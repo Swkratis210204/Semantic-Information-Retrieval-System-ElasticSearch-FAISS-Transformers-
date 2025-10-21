@@ -1,0 +1,45 @@
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter notebook checkpoints (keep notebooks!)
+.ipynb_checkpoints/
+
+# System/editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and temporary
+*.log
+*.tmp
+*.bak
+
+# Datasets and large local files
+IR2025/
+
+# Model or embedding files
+*.bin
+*.pt
+*.h5
+*.npy
+*.pkl
+
+# FAISS indexes
+*.index
+
+# Evaluation and result outputs
+*.trec
+*.eval
+*.results
+
+# Generated reports
+*.pdf
