@@ -1,0 +1,30 @@
+# Core Python version
+python>=3.10
+
+# Data manipulation
+pandas
+numpy
+
+# Elasticsearch client
+elasticsearch>=9.1.0
+
+# Evaluation and output formatting
+trec_eval-wrapper  # optional if you call trec_eval from Python
+tqdm
+
+# Visualization (if used inside Jupyter or reports)
+matplotlib
+seaborn
+
+# Jupyter support
+notebook
+ipykernel
+
+# Utility and system helpers
+requests
+pprintpp
+
+# Optional: for FAISS or Transformers extensions (later phases)
+faiss-cpu
+transformers
+torch
