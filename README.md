@@ -16,7 +16,7 @@ This repository contains the **technical implementation** for an Elasticsearch-b
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/Swkratis210204/IR2025-Pipeline.git
+git clone [Semantic Information Retrieval System](https://github.com/Swkratis210204/Semantic-Information-Retrieval-System-ElasticSearch-FAISS-Transformers-)
 cd IR2025-Pipeline
 ```
 
@@ -53,7 +53,7 @@ python -m pip install --upgrade pip setuptools wheel
 
 ### 🪟 Windows Setup
 
-1. **Download:** Get the ZIP file from: [Elasticsearch Downloads](https://www.elastic.co/downloads/elasticsearch)
+1. **Download:** Get the ZIP file from: git clone https://github.com/Swkratis210204/Semantic-Information-Retrieval-System-ElasticSearch-FAISS-Transformers-
 
 2. **Extract:** Extract the ZIP to a folder like this:
 
