@@ -16,7 +16,7 @@ This repository contains the **technical implementation** for an Elasticsearch-b
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone [Semantic Information Retrieval System](https://github.com/Swkratis210204/Semantic-Information-Retrieval-System-ElasticSearch-FAISS-Transformers-)
+git clone https://github.com/Swkratis210204/Semantic-Information-Retrieval-System-ElasticSearch-FAISS-Transformers-
 cd IR2025-Pipeline
 ```
 
