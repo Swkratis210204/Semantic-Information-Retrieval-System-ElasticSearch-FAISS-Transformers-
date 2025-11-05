@@ -23,8 +23,10 @@ Thumbs.db
 *.tmp
 *.bak
 
-# Datasets and large local files
-IR2025/
+documents.jsonl
+queries.txt
+qrels.txt
+results*
 
 # Model or embedding files
 *.bin
