@@ -96,6 +96,10 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 ### 4.2 Εκτέλεση Αξιολόγησης
 ### 4.3 Μετρικές Αξιολόγησης (Precision@k, MAP)
 ### 4.4 Παρουσίαση και Ερμηνεία Αποτελεσμάτων
+<p align="center">
+  <img src="precision-map.png" alt="Results of Precision and Map of our queries produced by trec_eval" width="700"/>
+</p>
+
 
 ---
 
