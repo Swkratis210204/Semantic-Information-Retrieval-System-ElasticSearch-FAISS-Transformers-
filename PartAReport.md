@@ -47,7 +47,7 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 - **Elasticsearch Client**  
   Ο Elasticsearch client που επικοινωνεί με την υπηρεσία και διαχειρίζεται τις λειτουργίες ευρετηρίασης και αναζήτησης.
 
-- **Queries / Generate Results**  
+- **Run Queries**  
   Εκτέλεση των ερωτημάτων από το αρχείο `queries.csv` και παραγωγή αποτελεσμάτων για διαφορετικές τιμές k (20, 30, 50).
 
 - **Results (results_20, results_30, results_50)**  
@@ -59,7 +59,7 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 - **trec_eval**  
   Εργαλείο αξιολόγησης που λαμβάνει ως είσοδο τα αποτελέσματα και το αρχείο `qrels.txt`, υπολογίζοντας δείκτες **Precision@k** και **Mean Average Precision (MAP)**.
 
-- **Evaluate Results / Evaluation Metrics (Precision@k, MAP)**  
+- **Evaluation Metrics (Precision@k, MAP)**  
   Παρουσίαση και ανάλυση των μετρικών αξιολόγησης που προκύπτουν από το `trec_eval`.
 
 ---
