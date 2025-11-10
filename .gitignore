@@ -45,3 +45,6 @@ results*
 
 # Generated reports
 *.pdf
+
+Part2.ipynb
+docs_preprocessed.csv
