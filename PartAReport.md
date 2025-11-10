@@ -1,4 +1,4 @@
-# 🧠 IR2025 – Αναφορά Φάσης 1  
+# IR2025 – Αναφορά Φάσης 1  
 ### Baseline Retrieval με χρήση Elasticsearch (BM25)
 
 **Μάθημα:** Information Retrieval 2025  
