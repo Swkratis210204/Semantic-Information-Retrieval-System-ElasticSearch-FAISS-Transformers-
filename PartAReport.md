@@ -27,7 +27,7 @@
 To παρακάτω διάγραμμα παρουσιάζει το συνολικό **διάγραμμα ροής** του συστήματος ανάκτησης που υλοποιήθηκε γαι το πρώτο μέρος της εργασίας. Το διάγραμμα αποτυπώνει τα **σημαντικότερα στάδια** της διαδικασίας — από την εισαγωγή και ευρετηρίαση των εγγράφων έως την αξιολόγηση των αποτελεσμάτων με το εργαλείο `trec_eval` — παρουσιάζοντας συνοπτικά τη συνολική ροή του συστήματος με τρόπο πλήρη και κατανοητό.
 
 <p align="center">
-  <img src="framework.drawio.png" alt="IR2025 Framework Diagram" width="700"/>
+  <img src="images/framework.drawio.png" alt="IR2025 Framework Diagram" width="700"/>
 </p>
 
 *Εικόνα 1 – Διάγραμμα ροής του συστήματος ανάκτησης με Elasticsearch.*
@@ -76,7 +76,7 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 
 
 <p align="center">
-  <img src="columns.png" alt="Columns and number of docs found" width="700"/>
+  <img src="images/columns.png" alt="Columns and number of docs found" width="700"/>
 </p>
 
 ### 1.2 Δομή του `documents.csv` και Πολιτική για κενά
@@ -99,7 +99,7 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 - Αφαίρεση μονών/διπλών εισαγωγικών.
 
 <p align="center">
-  <img src="preprocess.png" alt="preprocess code" width="700"/>
+  <img src="images/preprocess.png" alt="preprocess code" width="700"/>
 </p>
 
 ### 1.4 Μετατροπή σε Μορφή JSONL
@@ -111,7 +111,7 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 - Εμφάνιση του πλήρους path όπου αποθηκεύτηκε το `documents.jsonl`.
 
 <p align="center">
-  <img src="jsonl.png" alt="preprocess code" width="700"/>
+  <img src="images/jsonl.png" alt="preprocess code" width="700"/>
 </p>
 ---
 
@@ -140,7 +140,7 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 ### 4.3 Μετρικές Αξιολόγησης (Precision@k, MAP)
 ### 4.4 Παρουσίαση και Ερμηνεία Αποτελεσμάτων
 <p align="center">
-  <img src="precision-map.png" alt="Results of Precision and Map of our queries produced by trec_eval" width="700"/>
+  <img src="images/precision-map.png" alt="Results of Precision and Map of our queries produced by trec_eval" width="700"/>
 </p>
 
 
