@@ -76,7 +76,7 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 
 
 <p align="center">
-  <img src="images/columns.png" alt="Columns and number of docs found" width="700"/>
+  <img src="images/columns.png" alt="Columns and number of docs found" width="500"/>
 </p>
 
 ### 1.2 Δομή του `documents.csv` και Πολιτική για κενά
@@ -99,7 +99,7 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 - Αφαίρεση μονών/διπλών εισαγωγικών.
 
 <p align="center">
-  <img src="images/preprocess.png" alt="preprocess code" width="700"/>
+  <img src="images/preprocess.png" alt="preprocess code" width="500"/>
 </p>
 
 ### 1.4 Μετατροπή σε Μορφή JSONL
@@ -111,16 +111,63 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 - Εμφάνιση του πλήρους path όπου αποθηκεύτηκε το `documents.jsonl`.
 
 <p align="center">
-  <img src="images/jsonl.png" alt="preprocess code" width="700"/>
+  <img src="images/jsonl.png" alt="csv to json" width="500"/>
 </p>
 ---
 
 ## 2️⃣ Δημιουργία Ευρετηρίου στο Elasticsearch
 
 ### 2.1 Ρυθμίσεις και Δημιουργία Ευρετηρίου (`create_index`)
-### 2.2 Ορισμός Mapping και Analyzer
+**Στόχος.** Δημιουργία ενός νέου ευρετηρίου με όνομα `ir2025` στο Elasticsearch, με τις κατάλληλες ρυθμίσεις για BM25 similarity και standard analyzer.
+
+**Βήματα**
+- Σύνδεση στον Elasticsearch client: `Elasticsearch("http://127.0.0.1:9200")`.  
+- Εκτύπωση πληροφοριών για το cluster (όνομα, έκδοση, lucene version κ.λπ.).  
+- Αν υπάρχει ήδη ευρετήριο με το ίδιο όνομα, διαγράφεται πριν δημιουργηθεί καινούριο.  
+- Δημιουργία ευρετηρίου με:
+  - **Similarity:** BM25 (προεπιλογή για κλασικό IR baseline).  
+  - **Analyzer:** `standard`, κατάλληλος για γενική επεξεργασία αγγλικών κειμένων.  
+  - **Mapping:** `id` ως `keyword` και `text` ως `text` με τον ορισμένο analyzer.
+
+<p align="center">
+  <img src="images/elastic.png" alt="elastic" width="500"/>
+</p>
+
+### 2.2 Mapping και Analyzer του Ευρετηρίου
+
+**Στόχος.** Ορισμός της δομής (mapping) και του τρόπου ανάλυσης των πεδίων του ευρετηρίου.
+
+**Όπως ορίζεται στον κώδικα**
+- Πεδίο `id` → τύπος `keyword` (δεν αναλύεται, χρησιμοποιείται ως μοναδικό αναγνωριστικό).  
+- Πεδίο `text` → τύπος `text` με analyzer `"standard"` ώστε να γίνεται σωστά το tokenization(π.χ. κεφαλαία σε πέζα,αφαίρεση σημείων στίξης κλπ).  
+- Χρήση BM25 ως similarity metric για υπολογισμό σχετικότητας μεταξύ ερωτήματος και εγγράφου.
+
+<p align="center">
+  <img src="images/index.png" alt="index" width="500"/>
+</p>
+
 ### 2.3 Εισαγωγή Εγγράφων (`Index Documents`)
-### 2.4 Έλεγχος Ευρετηρίου και Διαχείριση (`Index Exists`, `Delete Existing Index`)
+
+**Στόχος.** Εισαγωγή όλων των εγγράφων από το αρχείο `documents.jsonl` στο ευρετήριο `ir2025` που δημιουργήθηκε στο Elasticsearch.
+
+**Βήματα που υλοποιεί ο κώδικας**
+- Ορίζεται η μέθοδος `index_documents(jsonl_path, index_name)` στην κλάση `Search`.  
+- Διαβάζει κάθε γραμμή του αρχείου `documents.jsonl` μέσω της συνάρτησης `generate_actions`, η οποία μετατρέπει κάθε εγγραφή σε action για μαζική εισαγωγή (bulk insert).  
+- Εκτελείται η εντολή `helpers.bulk()` για ταχεία ευρετηρίαση όλων των εγγράφων.  
+- Εκτυπώνεται στο console το πλήθος των εγγράφων που εισήχθησαν επιτυχώς στο ευρετήριο.
+
+### 2.4 Έλεγχος Υπαρξης και Διαχείριση Ευρετηρίου (`Index Exists`, `Delete Existing Index`)
+
+**Στόχος.** Έλεγχος αν υπάρχει ήδη ευρετήριο `ir2025` και διαγραφή του πριν τη δημιουργία νέου, ώστε να εξασφαλιστεί καθαρό περιβάλλον για κάθε εκτέλεση.
+
+**Όσα γίνονται στον κώδικα**
+- Καλείται `search.exists(INDEX_NAME)` για να ελεγχθεί αν υπάρχει ήδη το ευρετήριο.  
+- Αν υπάρχει, εκτελείται `search.delete_index(index_name=INDEX_NAME)` για τη διαγραφή του.  
+- Μετά τη διαγραφή, δημιουργείται νέο ευρετήριο με τις ίδιες ρυθμίσεις (BM25 similarity και standard analyzer).
+
+<p align="center">
+  <img src="images/search_index.png" alt="search_index" width="500"/>
+</p>
 
 ---
 
