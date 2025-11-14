@@ -45,3 +45,5 @@ results*
 
 # Generated reports
 *.pdf
+
+IR2025/trec_eval
