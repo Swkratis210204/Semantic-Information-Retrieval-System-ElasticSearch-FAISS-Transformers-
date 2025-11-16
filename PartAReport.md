@@ -919,10 +919,7 @@ class Evaluation:
             "P@20": parsed.get("P@20"),
             "MAP":  parsed.get("MAP"),
         }
-
-    # ------------------------------------------------------------
     # Full evaluation for k = 20/30/50
-    # ------------------------------------------------------------
     def evaluate_with_trec_eval(self, ks=(20, 30, 50), out_summary_path: Path = None):
         summary_rows = []
         for k in ks:
