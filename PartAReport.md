@@ -90,9 +90,17 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
   - Επιβεβαιώνει ότι υπάρχουν οι απαιτούμενες στήλες **ID** και **Text**.
     - Αν λείπουν, η διαδικασία σταματά άμεσα.
 
-<p align="center">
-  <img src="images/dirs.png" alt="Columns and number of docs found" width="500"/>
-</p>
+```python
+# Define paths
+BASE_DIR       = Path.cwd()
+DATA_DIR       = BASE_DIR
+
+CSV_PATH       = DATA_DIR / "documents.csv"
+JSONL_PATH     = DATA_DIR / "documents.jsonl"
+QUERIES_PATH   = DATA_DIR / "queries.csv"
+QRELS_CSV_PATH = DATA_DIR / "qrels.csv"   
+QRELS_TXT_PATH = DATA_DIR / "qrels.txt" 
+```
 
 ## 1.2 Δομή του `documents.csv` και Έλεγχος Απαραίτητων Πεδίων
 Σε αυτό το στάδιο το pipeline ελέγχει ότι το αρχείο **documents.csv** έχει τη σωστή δομή πριν συνεχιστεί η επεξεργασία.
@@ -111,6 +119,7 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 
 - Εγγραφές χωρίς τιμή στο πεδίο `Text` δεν μπορούν να ευρετηριαστούν στο Elasticsearch.
 - Ο κώδικας αφαιρεί αυτόματα αυτές τις εγγραφές με: 
+
 ```python
  df = df.dropna(subset=["Text"])
 ```
@@ -131,12 +140,29 @@ To παρακάτω διάγραμμα παρουσιάζει το συνολι�
 - Αφαιρεί μονά και διπλά εισαγωγικά.
 
 Κάθε κείμενο καθαρίζεται με την εντολή: 
+
 ```python
 df["Text"] = df["Text"].astype(str).map(preprocess)
 ```
-<p align="center">
-  <img src="images/preprocess.png" alt="preprocess code" width="500"/>
-</p>
+
+```python
+# Preprocess Text Data
+def preprocess(s):
+    if not isinstance(s, str):
+        return ""
+    s = s.strip()
+    s = re.sub(r"\s+", " ", s)                       # collapse spaces/newlines
+    s = re.sub(r"http\S+|www\.\S+", "<URL>", s)      # replace URLs
+    s = re.sub(r"\S+@\S+", "<EMAIL>", s)             # replace emails
+    s = re.sub(r"<[^>]+>", " ", s)                   # remove HTML tags
+    s = ''.join(ch for ch in s if ord(ch) >= 32)     # remove control chars
+    s = re.sub(r"['\"]", "", s)                      # remove single and double quotes
+    return s.strip()
+
+
+df = df.dropna(subset=["Text"])
+df["Text"] = df["Text"].astype(str).map(preprocess)
+```
 
 ### 1.4 Μετατροπή σε Μορφή JSONL
 
@@ -149,9 +175,24 @@ df["Text"] = df["Text"].astype(str).map(preprocess)
 ```json
   {"id": "...", "text": "..."}
 ```
-<p align="center">
-  <img src="images/json.png" alt="preprocess code" width="500"/>
-</p>
+
+```python
+# Convert to JSONL
+records_written = 0
+df["ID"] = df["ID"].astype(str).str.strip()
+with open(JSONL_PATH, "w", encoding="utf-8") as f:
+    for _, row in df.iterrows():
+        record = {
+            "id": str(row["ID"]).strip(),
+            "text": row["Text"]
+        }
+        json_line = json.dumps(record, ensure_ascii=False)
+        f.write(json_line + "\n")
+        records_written += 1
+
+print(f"Converted {records_written} rows → JSONL format")
+print(f"Output saved at: {JSONL_PATH.resolve()}")
+```
 
 ## 2️⃣ Δημιουργία Ευρετηρίου στο Elasticsearch
 
@@ -166,8 +207,14 @@ df["Text"] = df["Text"].astype(str).map(preprocess)
 - Αν υπάρχει ήδη ευρετήριο `IR2025`, διαγράφεται.
 - Ξεκινά η διαδικασία δημιουργίας (οι ρυθμίσεις BM25 και analyzer εξηγούνται στο επόμενο subsection).
 
+```python
+#Initiate search class and index name
+search=Search()
+INDEX_NAME = "ir2025" 
+```
+
 <p align="center">
-  <img src="images/elastic.png" alt="elastic" width="500"/>
+  <img src="images/elastic2.png" alt="elastic" width="500"/>
 </p>
 
 ---
