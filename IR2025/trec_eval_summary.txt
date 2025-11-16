@@ -1,21 +1,21 @@
 # summary for results_20.txt
-P_5	all	0.6600
-P_10	all	0.5800
-P_15	all	0.4800
-P_20	all	0.4150
-map	all	0.3931
+P_5	all	0.7000
+P_10	all	0.6300
+P_15	all	0.5000
+P_20	all	0.4500
+map	all	0.4385
 
 # summary for results_30.txt
-P_5	all	0.6600
-P_10	all	0.5800
-P_15	all	0.4800
-P_20	all	0.4150
-map	all	0.4273
+P_5	all	0.7000
+P_10	all	0.6300
+P_15	all	0.5000
+P_20	all	0.4500
+map	all	0.4867
 
 # summary for results_50.txt
-P_5	all	0.6600
-P_10	all	0.5800
-P_15	all	0.4800
-P_20	all	0.4150
-map	all	0.4544
+P_5	all	0.7000
+P_10	all	0.6300
+P_15	all	0.5000
+P_20	all	0.4500
+map	all	0.5187
 
