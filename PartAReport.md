@@ -155,7 +155,6 @@ df["Text"] = df["Text"].astype(str).map(preprocess)
 
 ## 2️⃣ Δημιουργία Ευρετηρίου στο Elasticsearch
 
----
 
 ## 2.1 Δημιουργία Ευρετηρίου (`create_index`)
 
