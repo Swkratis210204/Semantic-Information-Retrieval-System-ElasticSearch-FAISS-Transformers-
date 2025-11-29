@@ -327,9 +327,17 @@ index_settings = {
 3. **Δημιουργία νέου κενού ευρετηρίου**
 4. **Εισαγωγή εγγράφων**
 
-<p align="center">
-  <img src="images/searchcalls.png" alt="searchcalls" width="500"/>
-</p>
+```python
+#Delete index if exists
+if search.exists(INDEX_NAME):
+    search.delete_index(index_name=INDEX_NAME)
+    
+#Create new empty index
+search.create_index()
+
+#Index docs
+search.index_documents(JSONL_PATH,INDEX_NAME)
+```
 
 **Συνοπτικό σχόλιο.**  
 Η λειτουργικότητα που περιγράφεται στην Ενότητα 2 (δημιουργία ευρετηρίου, διαγραφή, έλεγχος ύπαρξης, bulk εισαγωγή και αναζήτηση) υλοποιείται πλήρως στην κλάση `Search`.  
@@ -363,9 +371,25 @@ qid Q0 docid rank score BM25
 - Τα αρχεία αποθηκεύονται στο directory της εργασίας και επιβεβαιώνονται με μηνύματα:
   `Created results file: results_20.txt`.
 
-<p align="center">
-<img src="images/generateresults.png" width="500"/>
-</p>
+```python
+# Creation of results_20/30/50.txt
+    def generate_file_results(self, queries_path: Path, ks=(20, 30, 50)):
+        df_queries = pd.read_csv(queries_path, encoding="utf-8")
+        print(f"Loaded queries: {len(df_queries)}")
+
+        for k in ks:
+            results_path = self.data_dir / f"results_{k}.txt"
+            with open(results_path, "w", encoding="utf-8") as f:
+                for _, row in df_queries.iterrows():
+                    qid = str(row.iloc[0])
+                    qtext = str(row.iloc[1])
+                    results = self.search.search_query(qtext, k)
+                    for rank, hit in enumerate(results, start=1):
+                        docid = hit["_source"]["id"]
+                        score = hit["_score"]
+                        f.write(f"{qid} Q0 {docid} {rank} {score:.4f} BM25\n")
+            print(f"Created results file: {self._rel(results_path)}")
+```
 
 ---
 
@@ -377,9 +401,13 @@ qid Q0 docid rank score BM25
 
 - Για κάθε `results_k.txt` κατασκευάζεται εντολή:
 
-<p align="center">
-<img src="images/cmd.png" width="500"/>
-</p>
+```python
+cmd = (
+            f"{self._rel(self.trec_eval_bin)} "
+            f"{self._rel(self.qrels_txt_path)} "
+            f"{self._rel(results_file)} -m all_trec"
+        )
+```
 
 - Η μέθοδος `_run_trec_eval_for_file()`:
 - εκτελεί το `trec_eval.exe` μέσω subprocess,
@@ -486,9 +514,15 @@ def _run_trec_eval_for_file(self, results_file: Path):
 Οι παρακάτω κλήσεις ενεργοποιούν **ολόκληρο** το pipeline αξιολόγησης:  
 δημιουργία αρχείων αποτελεσμάτων (results_k.txt), εκτέλεση του `trec_eval` και εξαγωγή συγκεντρωτικών μετρικών.
 
-<p align="center">
-  <img src="images/evaluatecalls.png" alt="evaluation calls" width="500"/>
-</p>
+```python
+evaluator = Evaluation(
+    search_client=search,
+    data_dir=DATA_DIR,
+    qrels_csv_path=DATA_DIR / "qrels.csv",  
+    qrels_txt_path=DATA_DIR / "qrels.txt",
+    trec_eval_bin=DATA_DIR / "trec_eval" / "trec_eval.exe"
+)
+```
 
 ### Τι κάνει η κλάση `Evaluation` (σύντομα)
 
