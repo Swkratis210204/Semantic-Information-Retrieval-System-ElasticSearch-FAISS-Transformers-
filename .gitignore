@@ -52,4 +52,7 @@ IR2025/trec_eval_summary.txt
 *.drawio
 Embeddings/
 test.py
+IR2025/trec_eval_summary3.txt
+IR2025/trec_eval_hybrid_summary3.txt
+trec_eval_faiss_summary3.txt
 3220028*
