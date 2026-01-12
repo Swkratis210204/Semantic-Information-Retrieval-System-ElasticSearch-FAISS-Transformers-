@@ -5,7 +5,7 @@
 **Μάθημα:** Information Retrieval 2025  
 **Φοιτητές(A.M.):** Περικλής Παύλου(3220158), Σωκράτης-Βησσαρίων Γιαννούτσος(3220028)  
 **Καθηγήτρια:** Αντωνία Κυριακοπούλου
-**Ημερομηνία Υποβολής:** 3 Δεκεμβρίου 2025
+**Ημερομηνία Υποβολής:** 11 Ιανουρίου 2026
 
 ---
 
@@ -648,6 +648,63 @@ evaluator = Evaluation(
 Η Φάση 2 θα επιτρέψει να αξιολογηθεί πόσο καλύτερα (ή διαφορετικά) λειτουργεί η σημασιολογική αναζήτηση σε σχέση με το κλασικό BM25 baseline που αναπτύχθηκε σε αυτή τη φάση.
 
 ---
+
+## Σχετική Βιβλιογραφία
+
+Η παρούσα εργασία στηρίζεται σε websites και youtube videos που αφορούν την Ανάκτηση Πληροφορίας (Information Retrieval),
+το μοντέλο BM25, τη μηχανή αναζήτησης Elasticsearch και την αξιολόγηση μέσω
+TREC μετρικών. Οι πηγές που ακολουθούν καλύπτουν τόσο τη θεωρητική κατανόηση
+όσο και την πρακτική υλοποίηση του συστήματος που αναπτύχθηκε.
+
+---
+
+### Sites
+
+- **Elasticsearch – Official Documentation**  
+  Επίσημη τεκμηρίωση του Elasticsearch, η οποία καλύπτει τη δημιουργία ευρετηρίων,
+  το full-text search, τους analyzers, το relevance scoring και τη χρήση του BM25.
+  Αποτελεί την κύρια αναφορά για την υλοποίηση του συστήματος.  
+  https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+
+- **Elasticsearch – Practical BM25 (Elastic Blog)**  
+  Αναλυτική παρουσίαση του τρόπου με τον οποίο υλοποιείται το BM25 στο Elasticsearch
+  και πώς επηρεάζεται το scoring από shards και παραμέτρους του αλγορίθμου.  
+  https://www.elastic.co/blog/practical-bm25-part-1-how-shards-affect-relevance-scoring-in-elasticsearch  
+  https://www.elastic.co/blog/practical-bm25-part-2-the-bm25-algorithm-and-its-variables
+
+- **BM25 – Okapi Ranking Function (Wikipedia)**  
+  Συνοπτική αλλά περιεκτική παρουσίαση του μοντέλου BM25 και των βασικών
+  μαθηματικών εννοιών που το διέπουν.  
+  https://en.wikipedia.org/wiki/Okapi_BM25
+
+- **Apache Lucene – Scoring & Similarity**  
+  Τεκμηρίωση της βιβλιοθήκης Lucene, πάνω στην οποία βασίζεται το Elasticsearch,
+  με έμφαση στον μηχανισμό similarity και στο BM25.  
+  https://lucene.apache.org/core/9_0_0/core/org/apache/lucene/search/similarities/BM25Similarity.html
+
+- **TREC – Text Retrieval Conference (NIST)**  
+  Επίσημος ιστότοπος του TREC, που περιγράφει το πλαίσιο αξιολόγησης συστημάτων
+  ανάκτησης και τις καθιερωμένες μετρικές (Precision, MAP κ.λπ.).  
+  https://trec.nist.gov/
+
+---
+
+### Youtube Videos
+
+- **A No-Nonsense Intro to BM25**  
+  Εισαγωγικό βίντεο που εξηγεί διαισθητικά τη λειτουργία του BM25 και τη διαφορά
+  του από το TF-IDF.  
+  https://www.youtube.com/watch?v=TW9vHU1GpU4
+
+- **BM25 Scoring Explained (Elasticsearch & IR)**  
+  Πρακτική επεξήγηση του scoring και της χρήσης του BM25 σε συστήματα αναζήτησης.  
+  https://www.youtube.com/watch?v=wW5OtLjKr90
+
+- **Information Retrieval Evaluation (Precision, Recall, MAP)**  
+  Εκπαιδευτικό βίντεο που καλύπτει τις βασικές μετρικές αξιολόγησης συστημάτων IR,
+  όπως αυτές που χρησιμοποιούνται μέσω του trec_eval.  
+  https://www.youtube.com/watch?v=cOxZBWnN9IA
+
 
 ## Appendix
 
