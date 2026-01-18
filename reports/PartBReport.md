@@ -870,6 +870,72 @@ D, I = index.search(q_vec, k)
 
 ---
 
+## Πηγές & Βιβλιογραφία
+
+Η παρούσα εργασία βασίστηκε σε επίσημη τεκμηρίωση, εκπαιδευτικό υλικό και
+επιλεγμένες διαδικτυακές πηγές που καλύπτουν τόσο τη θεωρία της ανάκτησης
+πληροφορίας όσο και την πρακτική υλοποίηση semantic retrieval με embeddings
+και FAISS.
+
+---
+
+### Documentation
+
+- **Sentence-Transformers – Official Documentation**  
+  https://www.sbert.net  
+  Τεκμηρίωση για pretrained sentence embedding models, χρήση `encode`,
+  batching, GPU/CPU execution και πρακτικά παραδείγματα.
+
+- **FAISS – Facebook AI Similarity Search**  
+  https://github.com/facebookresearch/faiss  
+  Επίσημο αποθετήριο και τεκμηρίωση για Approximate Nearest Neighbor Search,
+  IVF indexes, inner product, cosine similarity και index tuning.
+
+- **FAISS Wiki / Tutorials**  
+  https://github.com/facebookresearch/faiss/wiki  
+  Αναλυτικές επεξηγήσεις για index types (Flat, IVF, HNSW), παραμέτρους
+  `nlist`, `nprobe` και πρακτικά trade-offs ακρίβειας–ταχύτητας.
+
+- **TREC Evaluation Tool (trec_eval)**  
+  https://trec.nist.gov/trec_eval/  
+  Επίσημη τεκμηρίωση του εργαλείου αξιολόγησης TREC για P@k, MAP και
+  άλλες μετρικές ανάκτησης πληροφορίας.
+
+---
+
+### Πρακτική Υλοποίηση & Παραδείγματα Κώδικα
+
+- **Sentence Embeddings with SBERT (Examples)**  
+  https://www.sbert.net/examples/applications/semantic-search/README.html  
+  Παραδείγματα semantic search με sentence embeddings και cosine similarity.
+
+- **FAISS: Approximate Nearest Neighbor Search Examples**  
+  https://github.com/facebookresearch/faiss/tree/main/tutorial  
+  Παραδείγματα κώδικα για κατασκευή και χρήση FAISS indexes σε Python.
+
+- **Cosine Similarity vs Inner Product in FAISS**  
+  https://www.pinecone.io/learn/faiss/  
+  Επεξήγηση της σχέσης L2-normalization, cosine similarity και inner product.
+
+---
+
+### YouTube Βίντεο
+
+- **Sentence Transformers Explained**  
+  https://www.youtube.com/watch?v=G5M4vPp5p9Q  
+  Εισαγωγικό βίντεο για sentence embeddings και semantic similarity.
+
+- **FAISS Tutorial – Nearest Neighbor Search at Scale**  
+  https://www.youtube.com/watch?v=8odY8a1sDg8  
+  Παρουσίαση της λογικής και της χρήσης του FAISS για μεγάλα embedding spaces.
+
+- **Information Retrieval Evaluation (MAP, Precision@k)**  
+  https://www.youtube.com/watch?v=5j4hG3mZp8E  
+  Αναλυτική επεξήγηση των βασικών μετρικών αξιολόγησης στην ανάκτηση πληροφορίας.
+
+
+---
+
 ## 6️⃣ Συμπεράσματα & Επόμενα Βήματα
 
 Στο Μέρος Β υλοποιήθηκε ένα πλήρες σύστημα **semantic information retrieval**
