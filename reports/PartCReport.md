@@ -51,7 +51,7 @@
 Απεικονίζονται τα βασικά στάδια της διαδικασίας — από την προεπεξεργασία και την αρχική ανάκτηση υποψήφιων εγγράφων έως τη δημιουργία embeddings, την επαναταξινόμηση και την τελική αξιολόγηση με το εργαλείο `trec_eval`.
 
 <p align="center">
-  <img src="../frameworks/frameworkC.drawio.png"
+  <img src="../frameworks/HybridIR.drawio.png"
        alt="IR2025 Phase 3 Hybrid Framework Diagram"
        width="700"/>
 </p>
